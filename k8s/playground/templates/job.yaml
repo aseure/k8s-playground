@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: migration
+  annotations:
+    "helm.sh/hook": pre-install,pre-upgrade
+spec:
+  template:
+    spec:
+      containers:
+        - name: migration
+          image: alpine:3.16.2
+          command:
+            - /bin/sh
+            - -c
+            - |
+              sleep 10
+              exit 0
+      restartPolicy: Never
